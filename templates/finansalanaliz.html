@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Financial Analysis</title>
+</head>
+<body>
+    <h1>Financial Analysis</h1>
+    <form method="POST">
+        <label for="income">Please enter your income:</label><br>
+        <input type="text" id="income" name="income"><br>
+        <label for="expense">Please enter your expense:</label><br>
+        <input type="text" id="expense" name="expense"><br><br>
+        <input type="submit" value="Calculate">
+    </form>
+    {% if result %}
+        <h2>{{ result }}</h2>
+    {% endif %}
+</body>
+</html>

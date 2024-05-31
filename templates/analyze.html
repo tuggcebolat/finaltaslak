@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Analysis</title>
+    <!-- Plotly CDN -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+    <h1>Data Analysis</h1>
+    <h2>File: {{ filename }}</h2>
+
+    <!-- Summary Statistics -->
+    <h3>Summary Statistics</h3>
+    <div>{{ tables[0]|safe }}</div>
+
+    <!-- Box Plot -->
+    <h3>Box Plot</h3>
+    <div>{{ plot_div_box_plot|safe }}</div>
+
+    <!-- Histograms -->
+    <h3>Histograms</h3>
+    <div>
+        {% for plot in plot_div_histograms %}
+            {{ plot|safe }}
+        {% endfor %}
+    </div>
+
+    <!-- Violin Plots -->
+    <h3>Violin Plots</h3>
+    <div>
+        {% for plot in plot_div_violin_plots %}
+            {{ plot|safe }}
+        {% endfor %}
+    </div>
+
+    <!-- Categorical Plots -->
+    <h3>Categorical Plots</h3>
+    <div>
+        {% for col, plot in cat_plots.items() %}
+            <h4>{{ col }}</h4>
+            {{ plot|safe }}
+        {% endfor %}
+    </div>
+
+    <!-- Analysis of Categorical Columns -->
+    <h3>Analysis of Categorical Columns</h3>
+    <div>
+        {% for col, value_counts in cat_analysis.items() %}
+            <h4>{{ col }}</h4>
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>Category</th>
+                        <th>Count</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for category, count in value_counts.items() %}
+                        <tr>
+                            <td>{{ category }}</td>
+                            <td>{{ count }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% endfor %}
+    </div>
+</body>
+</html>
